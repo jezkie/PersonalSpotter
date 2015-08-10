@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head></h:head>
+<h:body>
+	<f:loadBundle basename="com.cai.contact.messages" var="msg" />
+	<p:layout fullPage="true" size="100">
+		<p:layoutUnit position="north">
+			<ui:insert name="header">
+				<ui:include src="/WEB-INF/templates/header.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+		<p:layoutUnit position="center" size="100">
+			<ui:insert name="content">
+				<ui:include src="/WEB-INF/templates/contents.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="100" maxSize="50">
+			<ui:insert name="footer">
+				<ui:include src="/WEB-INF/templates/footer.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+
+	</p:layout>
+
+</h:body>
+</html>

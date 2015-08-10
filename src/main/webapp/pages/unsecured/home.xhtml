@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/tags">
+	
+<h:body>
+	<ui:composition template="/WEB-INF/templates/common.xhtml">
+		<ui:define name="content">
+			<h1>Contact Manager Navigation</h1>
+			<hr />
+			<h:form >
+				<h3>
+					<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_SUPER">
+						<h:outputText value="Go to Contact Manager"/>
+					</sec:authorize>
+					<h:outputText rendered="#{sec:areNotGranted('ROLE_ADMIN, ROLE_SUPER')}" value="You have no access to Contact Manager"/>
+				</h3>
+				<h:commandButton disabled="#{sec:areNotGranted('ROLE_ADMIN, ROLE_SUPER')}" action="/pages/secured/contact?faces-redirect=true" value="Contact Manager" />
+			</h:form>
+			
+			<br />
+			<br />
+			<h1>Implicit Navigation</h1>
+			<hr />
+			<h:form>
+				<h3>Using ManagedBean</h3>
+				<h:commandButton action="#{nav.moveToPage1}" value="Page 1" />
+			</h:form>
+			<h:form>
+				<h3>Using JSF Outcome</h3>
+				<h:commandButton action="/pages/unsecured/page2" value="Page 2" />
+			</h:form>
+
+			<br />
+			<br />
+			<h1>Conditional Navigation</h1>
+			<hr />
+			<h:form>
+				<h:commandLink action="#{nav.showPage}" value="Page 1">
+					<f:param name="pageId" value="1" />
+				</h:commandLink>&nbsp;
+   				<h:commandLink action="#{nav.showPage}" value="Page 2">
+					<f:param name="pageId" value="2" />
+				</h:commandLink>
+			</h:form>
+
+			<br />
+			<br />
+			<h1>"From Action" Navigation</h1>
+			<hr />
+			<h:form>
+				<h:commandLink action="#{nav.processPage1}" value="Page 1">
+				</h:commandLink>&nbsp;
+   				<h:commandLink action="#{nav.processPage2}" value="Page 2">
+				</h:commandLink>
+			</h:form>
+
+			<br />
+			<br />
+			<h1>Forward vs Redirect Navigation</h1>
+			<hr />
+			<h:form>
+				<h3>Forward</h3>
+				<h:commandButton action="/pages/unsecured/page1" value="Forward to Page 1" />
+				<h3>Redirect</h3>
+				<h:commandButton action="/pages/unsecured/page1?faces-redirect=true" value="Redirect Page 1" />
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

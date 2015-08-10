@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+
+    <application>
+		<el-resolver>
+    		    org.springframework.web.jsf.el.SpringBeanFacesELResolver
+		</el-resolver>
+  	</application>
+    
+	<navigation-rule>
+		<from-view-id>/pages/unsecured/home.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{nav.processPage1}</from-action>
+			<from-outcome>page</from-outcome>
+			<to-view-id>/pages/unsecured/page1.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nav.processPage2}</from-action>
+			<from-outcome>page</from-outcome>
+			<to-view-id>/pages/unsecured/page2.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+    <navigation-rule>
+        <from-view-id>/pages/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{loginMgmtBean.login}</from-action>
+            <from-outcome>validuser</from-outcome>
+            <to-view-id>/pages/unsecured/home.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

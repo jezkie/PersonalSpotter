@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/common.xhtml">
+	<ui:define name="content">
+		<h2>ROA Capture</h2>
+
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Account" />
+				<h:inputText value="#{roaBean.roa.account}" />
+
+				<h:outputText value="Client" />
+				<h:inputText value="#{roaBean.roa.client}" />
+
+				<h:outputText value="Adviser" />
+				<h:inputText value="#{roaBean.roa.adviser}" />
+
+
+			</h:panelGrid>
+			<br></br>
+			<h:outputText value="#{roaBean.investmentsList.size()}"></h:outputText>
+
+			<h:dataTable id="table" var="investment"
+				value="#{roaBean.investmentsList}">
+				<p:column headerText="Investment Code">
+					<h:inputText value="#{investment.investmentCode}" />
+				</p:column>
+
+				<p:column headerText="Basis of Advice">
+					<h:inputTextarea value="#{investment.basisOfAdvice}" />
+				</p:column>
+
+			</h:dataTable>
+
+			<h:commandButton action="#{roaBean.saveRoa}" value="Submit" />
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

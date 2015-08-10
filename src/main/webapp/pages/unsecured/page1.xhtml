@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+	<ui:composition template="/WEB-INF/templates/common.xhtml">
+		<ui:define name="header">
+			<h1>This is Page 1 Header</h1>
+		</ui:define>
+		<ui:define name="content">
+			<h1>This is Page 1 Content</h1>
+			<f:metadata>
+				<f:viewParam name="myname"></f:viewParam>
+			</f:metadata>
+			<h:form>
+				<h:outputText value="Parameter value: #{myname}"></h:outputText>
+				<h:commandButton action="home" value="Back To Home Page" />
+			</h:form>
+		</ui:define>
+		<ui:define name="footer">
+			<h1>This is Page 1 Footer</h1>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

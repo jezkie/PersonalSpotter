@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/common.xhtml">
+	<ui:define name="content">
+		<h1>Login Page</h1>
+		<h:form id="loginFormId" prependId="false">
+			<p:messages globalOnly="true"></p:messages>
+			<h:panelGrid columns="3">
+				<h:outputText id="outTxtUserNameId" value="Username:" name="outTxtUserNameNm"></h:outputText>
+				<h:inputText id="userName" required="true" value="#{loginMgmtBean.userName}"
+					requiredMessage="Please enter username"></h:inputText>
+				<p:message for="userName"></p:message>
+
+				<h:outputText id="outTxtPasswordId" value="Password:" name="outTxtPasswordNm"></h:outputText>
+				<h:inputSecret id="password" required="true" value="#{loginMgmtBean.password}"
+					requiredMessage="Please enter password"></h:inputSecret>
+				<p:message for="password"></p:message>
+			</h:panelGrid>
+
+			<div id="loginBtnPanelId">
+				<h:commandButton id="btnLoginId" value="Login"
+					action="#{loginMgmtBean.login}" styleClass="loginPanelBtn"></h:commandButton>
+				<h:commandButton id="btnCancelId" value="Cancel"
+					action="#{loginMgmtBean.cancel}" styleClass="loginPanelBtn"
+					immediate="true" update="loginFormId"></h:commandButton>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+
