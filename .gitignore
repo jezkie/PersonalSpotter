@@ -42,8 +42,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
-.class
-.classpath
-.prefs
-.MF
+*.classpath
+*.prefs
+*.MF
+*.class
+*.war
+*.bin
+.gradle/2.2.1/taskArtifacts/cache.properties.lock
