@@ -10,6 +10,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.NumberFormat;
 
+import com.cai.contact.validator.Email;
+
 @Entity
 @Table(name = "CONTACTS")
 public class Contact{
@@ -29,7 +31,7 @@ public class Contact{
 	private String lastname;
 
 	@Column(name = "EMAIL")
-	//@Email
+	@Email
 	private String email;
 
 	@Column(name = "TELEPHONE")
