@@ -18,28 +18,12 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
 		p:location="/WEB-INF/jdbc.properties" />
 	
-	<jd:embedded-database id="dataSource" type="HSQL">
-	  	<jd:script location="classpath:schema.sql"/>
-	  	<jd:script location="classpath:users.sql"/>
-	  	<jd:script location="classpath:test-data.sql"/>
- 	</jd:embedded-database>
+	<jd:embedded-database id="dataSource" type="HSQL"/>
 	
-	<!-- commented for Hibernate 4 migration -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation">
 			<value>classpath:hibernate.cfg.xml</value>
-		</property>
-		<property name="annotatedClasses">
-			<list>
-				<value>com.cai.contact.form.Contact</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
-				<prop key="hibernate.show_sql">true</prop>
-			</props>
 		</property>
 	</bean>
 	
