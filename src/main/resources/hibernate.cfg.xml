@@ -6,15 +6,11 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<property name="connection.driver_class">${jdbc.driverClassName}</property>
-		<property name="hibernate.connection.url">${jdbc.databaseurl}</property>
-		<property name="hibernate.connection.username">sa</property>
-		<property name="hibernate.connection.password"></property>
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="show_sql">true</property>
 		<property name="dialect">${jdbc.dialect}</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<mapping class="com.cai.contact.form.Contact" />
 		<mapping class="com.jescy.spotter.dto.Exercise" />
+		<mapping class="com.jescy.spotter.dto.ExerciseSet" />
 	</session-factory>
 </hibernate-configuration>
