@@ -1,7 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 apply plugin: 'war'
 archivesBaseName = 'spotter'
+
+group = 'com.jescy.spotter'
 version = '1' 
 
 repositories {
@@ -29,8 +32,34 @@ dependencies {
 	compile 'org.aspectj:aspectjrt:1.8.6'
 	compile 'org.aspectj:aspectjweaver:1.8.6'
 	compile 'javax.inject:javax.inject:1'
-	compile 'org.hsqldb:hsqldb:2.3.3'
+	//compile 'org.hsqldb:hsqldb:2.3.3'
 	compile 'org.primefaces:primefaces:5.2'
 	compile 'org.springframework.webflow:spring-faces:2.4.1.RELEASE'
 	compile 'org.primefaces.themes:all-themes:1.0.10'
+	compile 'mysql:mysql-connector-java:5.1.36'
+	compile 'org.apache.commons:commons-dbcp2:2.1.1'
+	compile 'javax.servlet:javax.servlet-api:3.1.0'
 } 
+
+/**
+*  ~/.gradle/gradle.properties:
+*  glassfishHome=/path/to/glassfish_home
+*
+*  or in Netbeans, right click project, Properties, Manage Build in Tasks, Run
+*  Add line to Arguments: -Dorg.gradle.project.glassfishHome=D:/Glassfish/glassfish4
+*
+*  For more information about Exec tasks see
+*  http://www.gradle.org/docs/current/dsl/org.gradle.api.tasks.Exec.html
+*/
+
+task run(dependsOn: 'war', type:Exec) {
+  workingDir "${glassfishHome}${File.separator}bin"
+ 
+  if (System.properties['os.name'].toLowerCase().contains('windows')) {
+    commandLine 'cmd', '/c', 'asadmin.bat'
+  } else {
+    commandLine "./asadmin"
+  }
+ 
+  args "deploy", "--force=true",  "${war.archivePath}"
+}
